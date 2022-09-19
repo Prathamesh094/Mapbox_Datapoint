@@ -8,10 +8,10 @@ export class DataPoint {
     id: number;
 
     @Column()
-    Lat:number;
+    Lat:String;
 
     @Column()
-    Long:number;
+    Long:String;
 
     // @Column()
     // Name:String;

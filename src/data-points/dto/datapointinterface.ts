@@ -6,14 +6,14 @@ export class DataPoint {
   
     id: number;
    
-    Lat:String;
+    Lat:boolean;
     
-    Long:String;
+    Long:boolean;
 
     // Name:String;
 
     City_Name:String;
-    
+
 
     
 }

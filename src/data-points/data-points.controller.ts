@@ -7,28 +7,28 @@ import { UpdateDataPointDto } from './dto/update-data-point.dto';
 export class DataPointsController {
   constructor(private readonly dataPointsService: DataPointsService) {}
 
-  @Post()
-  create(@Body() createDataPointDto: CreateDataPointDto) {
-    return this.dataPointsService.create(createDataPointDto);
-  }
+  // @Post()
+  // create(@Body() createDataPointDto: CreateDataPointDto) {
+  //   return this.dataPointsService.create(createDataPointDto);
+  // }
 
   @Get()
   findAll() {
     return this.dataPointsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.dataPointsService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.dataPointsService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDataPointDto: UpdateDataPointDto) {
-    return this.dataPointsService.update(+id, updateDataPointDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateDataPointDto: UpdateDataPointDto) {
+  //   return this.dataPointsService.update(+id, updateDataPointDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.dataPointsService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.dataPointsService.remove(+id);
+  // }
 }
