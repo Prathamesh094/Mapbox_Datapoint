@@ -19,7 +19,7 @@ import { DataPoint } from './data-points/entities/data-point.entity';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-     // logging:true,
+     logging:true,
     entities:[DataPoint],
     }),
   ],

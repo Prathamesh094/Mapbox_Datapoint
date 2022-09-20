@@ -8,9 +8,9 @@ import { DataPoint } from './entities/data-point.entity';
 
 @Injectable()
 export class DataPointsService {
-  // create(createDataPointDto: CreateDataPointDto) {
-  //   return 'This action adds a new dataPoint';
-  // }
+  create(createDataPointDto: CreateDataPointDto) {
+    // return 'This action adds a new dataPoint';
+  }
 
   constructor(
     @InjectRepository(DataPoint)
@@ -19,7 +19,23 @@ export class DataPointsService {
 
   findAll(): Promise<DataPoint[]> {
     return this.MapRepository.find();
+
+//     @Injectable()
+// export class dataServices {
+//   constructor(
+//     private readonly csvParser: CsvParser
+//   ) {}
+
+//   async parse() {
+//     // Create stream from file (or get it from S3)
+//     const stream = fs.createReadStream(__dirname + '/some.csv')
+//     const entities: Entity[] = await csvParser.parse(stream, Entity)
+
+//     return entities
+//   }
   }
+
+  
 
   // findOne(id: number) {
   //   return `This action returns a #${id} dataPoint`;
