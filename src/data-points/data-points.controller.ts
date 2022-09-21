@@ -55,6 +55,8 @@ export class DataPointsController {
           callback(null,`${file.originalname}`);
         },
       }),
+
+      
       fileFilter:(req,file,callback)=>{
         if(!file.originalname.match(/\.(csv)$/)){
           return callback(new Error('please check file format'),false);
@@ -64,7 +66,7 @@ export class DataPointsController {
     }),
   )
   async uploadFile(@UploadedFile()file:Express.Multer.File){
-    const csvFile=readFileSync(`data/${file.originalname}`);
+    const csvFile=readFileSync(`info/${file.originalname}`);
     const csvData= csvFile.toString();
     const parsedCsv=await parse(csvData,{
       header:true,
@@ -73,24 +75,48 @@ export class DataPointsController {
       complete:(result:{data:any;})=>result.data,
  });
  console.log(parsedCsv.data[0]);
- var point = {
-   type: 'Point',
-   coordinates: [parsedCsv.data[0].Lat, parsedCsv.data[0].Long],
- };
- const loadData = {
-   id: parsedCsv.data[0].id,
-   Lat: parsedCsv.data[0].Lat,
-   Long: parsedCsv.data[0].Long,
-   City_Name: parsedCsv.data[0].City_Name,
-   location:point,
- };
- console.log(loadData);
- this.dataPointsService.create(loadData);
+//  var Point = {
+//    type: 'Point',
+//    coordinates: [parsedCsv.data[0].lat, parsedCsv.data[0].long],
+//  };
+//  const loadData = {
+//    id: parsedCsv.data[0].id,
+//    lat: parsedCsv.data[0].lat,
+//    long: parsedCsv.data[0].long,
+//    city_name: parsedCsv.data[0].city_name,
+//    location:Point
+//  };
+//  console.log(loadData);
+//  this.dataPointsService.create(loadData);
+
+// foe each loop
+
+
+parsedCsv.data.forEach(element => {
+  var Point = {
+    type: 'Point',
+    coordinates: [element.lat, element.long],
+  };
+  const loadData = {
+    id:element.id,
+    lat:element.lat,
+    long:element.long,
+    city_name:element.city_name,
+    location:Point
+  };
+  console.log(loadData);
+  this.dataPointsService.create(loadData);
+  
+});
+
+
+
+
  const response = {
    message: 'File uploaded successfully!',
    data: {
      originalname: file.originalname,
-     // filename: file.filename,
+     filename: file.filename,
    },
  };
  return response;

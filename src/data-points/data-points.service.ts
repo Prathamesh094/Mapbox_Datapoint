@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-
 import { Repository } from 'typeorm';
 import { CreateDataPointDto } from './dto/create-data-point.dto';
 import { UpdateDataPointDto } from './dto/update-data-point.dto';
@@ -8,17 +7,22 @@ import { DataPoint } from './entities/data-point.entity';
 
 @Injectable()
 export class DataPointsService {
-  create(createDataPointDto: CreateDataPointDto) {
-    // return 'This action adds a new dataPoint';
-  }
+ 
 
   constructor(
     @InjectRepository(DataPoint)
     private readonly MapRepository: Repository<DataPoint>,
   ) {}
 
+
+  create(createDataPointDto: CreateDataPointDto):Promise<DataPoint>{
+    return this.MapRepository.save(createDataPointDto)
+  }
+
   findAll(): Promise<DataPoint[]> {
     return this.MapRepository.find();
+
+    
 
 //     @Injectable()
 // export class dataServices {

@@ -8,16 +8,16 @@ export class DataPoint {
     id: number;
 
     @Column()
-    Lat:String;
+    lat:String;
 
     @Column()
-    Long:String;
+    long:String;
 
     // @Column()
     // Name:String;
 
     @Column()
-    City_Name:String;
+    city_name:String;
 
     @Index({ spatial: true })
     @Column({
