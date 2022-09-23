@@ -56,7 +56,7 @@ export class DataPointsController {
         },
       }),
 
-      
+      // file filter is  a inbuild function which check the given file formt
       fileFilter:(req,file,callback)=>{
         if(!file.originalname.match(/\.(csv)$/)){
           return callback(new Error('please check file format'),false);
@@ -75,6 +75,8 @@ export class DataPointsController {
       complete:(result:{data:any;})=>result.data,
  });
  console.log(parsedCsv.data[0]);
+
+
 //  var Point = {
 //    type: 'Point',
 //    coordinates: [parsedCsv.data[0].lat, parsedCsv.data[0].long],
@@ -108,9 +110,6 @@ parsedCsv.data.forEach(element => {
   this.dataPointsService.create(loadData);
   
 });
-
-
-
 
  const response = {
    message: 'File uploaded successfully!',
